@@ -1,0 +1,40 @@
+@startuml state
+[*] --> NEW: Order Created
+
+NEW --> PREPARING: Staff Starts Preparation
+NEW --> CANCELLED: Customer Cancels
+
+PREPARING --> READY: Dish Ready
+
+READY --> SERVED: Customer Receives
+
+SERVED --> [*]: Rating Provided
+
+CANCELLED --> [*]: Order Cancelled
+
+note right of NEW
+  Замовлення щойно створене
+  Клієнт може його скасувати
+end note
+
+note right of PREPARING
+  Персонал готує замовлення
+  Статус неможливо скасувати
+end note
+
+note right of READY
+  Замовлення готово
+  Очікує клієнта
+end note
+
+note right of SERVED
+  Замовлення видане клієнту
+  Готово до оцінювання
+end note
+
+note right of CANCELLED
+  Замовлення скасовано
+  Завершено
+end note
+
+@enduml

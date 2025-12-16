@@ -1,0 +1,31 @@
+@startuml usecase
+left to right direction
+actor Customer as customer
+actor Staff as staff
+rectangle RestaurantSystem {
+  usecase "UC1: Create Order" as createOrder
+  usecase "UC2: Add Item to Order" as addItem
+  usecase "UC3: Calculate Total" as calculateTotal
+  usecase "UC4: Change Order Status" as changeStatus
+  usecase "UC5: Cancel Order" as cancelOrder
+  usecase "UC6: Rate Order" as rateOrder
+  usecase "UC7: View Menu" as viewMenu
+  usecase "UC8: Register Customer" as registerCustomer
+}
+
+customer --> registerCustomer
+customer --> viewMenu
+customer --> createOrder
+customer --> addItem
+customer --> calculateTotal
+customer --> rateOrder
+customer --> cancelOrder
+
+staff --> changeStatus
+staff --> viewMenu
+
+createOrder --> calculateTotal
+addItem --> calculateTotal
+changeStatus --> rateOrder
+
+@enduml

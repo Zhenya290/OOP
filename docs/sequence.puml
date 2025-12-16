@@ -1,0 +1,50 @@
+@startuml sequence
+actor Customer as customer
+participant Application as app
+participant Restaurant as restaurant
+participant Order as order
+participant OrderItem as item
+
+customer -> app: Start Application
+app -> restaurant: Create Restaurant
+restaurant -> restaurant: Add Menu Items
+
+customer -> app: Register Customer
+app -> restaurant: Create Customer
+
+customer -> app: View Menu
+app -> restaurant: Get Menu Items
+restaurant --> app: Menu Items List
+app --> customer: Display Menu
+
+customer -> app: Create Order
+app -> restaurant: Create Order
+restaurant -> order: new Order
+restaurant --> app: Order Created
+app --> customer: Order Created
+
+customer -> app: Add Items to Order
+app -> order: Create OrderItem
+item -> item: Calculate Item Price
+app -> order: Add Item
+order --> app: Item Added
+app --> customer: Item Added
+
+customer -> app: Calculate Total
+app -> order: Calculate Total
+order -> order: Sum All Items
+order --> app: Total Amount
+app --> customer: Show Total
+
+customer -> app: Submit Order
+app -> restaurant: Process Order
+restaurant -> order: Change Status to PREPARING
+order --> restaurant: Status Changed
+app --> customer: Order Submitted
+
+customer -> app: Rate Order
+app -> order: Set Rating
+order --> app: Rating Set
+app --> customer: Thank You!
+
+@enduml
