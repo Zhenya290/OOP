@@ -6,28 +6,23 @@ import com.google.inject.Injector;
 
 public class Application {
 
-    private final OrderService orderService;
+    private OrderServiceSetter orderService;
+
+    public Application() {}
 
     @Inject
-    public Application(OrderService orderService) {
+    public void setOrderService(OrderServiceSetter orderService) {
         this.orderService = orderService;
     }
 
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new KonopliastyiModule());
         Application app = injector.getInstance(Application.class);
-
-        // keep your old demo if you want:
-        // demonstrateSystem();
-
         app.run();
     }
 
     public void run() {
-        // Trigger DB creation + write
-        orderService.saveOrder("ORD-DB-1", "READY", 1.0);
-        System.out.println("[INFO] SQLite write done");
+        orderService.saveOrder("ORD-SET-1", "READY", 2.0);
+        System.out.println("[INFO] Setter DI write done");
     }
-
-    // If you need your previous demo, paste it here later (optional)
 }
