@@ -6,14 +6,8 @@ import com.google.inject.Injector;
 
 public class Application {
 
-    private OrderServiceSetter orderService;
-
-    public Application() {}
-
     @Inject
-    public void setOrderService(OrderServiceSetter orderService) {
-        this.orderService = orderService;
-    }
+    private OrderServiceField orderService;
 
     public static void main(String[] args) {
         Injector injector = Guice.createInjector(new KonopliastyiModule());
@@ -22,7 +16,7 @@ public class Application {
     }
 
     public void run() {
-        orderService.saveOrder("ORD-SET-1", "READY", 2.0);
-        System.out.println("[INFO] Setter DI write done");
+        orderService.saveOrder("ORD-FIELD-1", "READY", 3.0);
+        System.out.println("[INFO] Field DI write done");
     }
 }
