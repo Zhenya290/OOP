@@ -1,3 +1,5 @@
+package com.konopliastyi;
+
 // Клас для представлення позиції замовлення
 public class OrderItem {
     // Позиція меню

@@ -1,3 +1,5 @@
+package com.konopliastyi;
+
 // Клас для представлення позиції меню
 public class MenuItem {
     // Унікальний ідентифікатор позиції

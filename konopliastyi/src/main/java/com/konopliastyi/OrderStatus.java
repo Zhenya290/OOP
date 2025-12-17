@@ -1,3 +1,5 @@
+package com.konopliastyi;
+
 // Перелік можливих статусів замовлення
 public enum OrderStatus {
     NEW,       // Нове замовлення

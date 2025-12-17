@@ -1,3 +1,5 @@
+package com.konopliastyi;
+
 // Клас для представлення клієнта ресторану
 public class Customer extends Person {
     // Кількість замовлень

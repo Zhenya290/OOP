@@ -1,3 +1,5 @@
+package com.konopliastyi;
+
 // Абстрактний клас для представлення особи
 public abstract class Person {
     // Унікальний ідентифікатор
