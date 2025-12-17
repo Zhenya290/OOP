@@ -1,0 +1,96 @@
+@startuml class
+skinparam classAttributeIconSize 0
+
+abstract class Person {
+  - customerId: String
+  - name: String
+  - email: String
+  + Person(id: String, name: String, email: String)
+  + getCustomerId(): String
+  + getName(): String
+  + setName(name: String): void
+  + displayInfo(): void
+}
+
+interface Ratable {
+  + getRating(): int
+  + setRating(rating: int): void
+}
+
+enum OrderStatus {
+  NEW
+  PREPARING
+  READY
+  SERVED
+  CANCELLED
+}
+
+class MenuItem {
+  - itemId: String
+  - name: String
+  - price: double
+  + MenuItem(id: String, name: String, price: double)
+  + getItemId(): String
+  + getName(): String
+  + getPrice(): double
+}
+
+class Customer extends Person {
+  - ordersCount: int
+  + Customer(id: String, name: String, email: String)
+  + placeOrder(): Order
+  + rateOrder(rating: int): void
+}
+
+class OrderItem {
+  - menuItem: MenuItem
+  - quantity: int
+  + OrderItem(item: MenuItem, quantity: int)
+  + getMenuItem(): MenuItem
+  + getQuantity(): int
+  + getSubtotal(): double
+}
+
+class Order implements Ratable {
+  - orderId: String
+  - customer: Customer
+  - items: List~OrderItem~
+  - status: OrderStatus
+  - rating: int
+  - totalAmount: double
+  + Order(id: String, customer: Customer)
+  + addItem(item: OrderItem): void
+  + removeItem(item: OrderItem): void
+  + calculateTotal(): double
+  + getTotal(): double
+  + changeStatus(status: OrderStatus): void
+  + getStatus(): OrderStatus
+  + getRating(): int
+  + setRating(rating: int): void
+  + displayOrderInfo(): void
+}
+
+class Restaurant {
+  - menuItems: List~MenuItem~
+  - orders: List~Order~
+  + Restaurant()
+  + addMenuItem(item: MenuItem): void
+  + getMenu(): List~MenuItem~
+  + createOrder(customer: Customer): Order
+  + processOrder(order: Order, status: OrderStatus): void
+  + getAllOrders(): List~Order~
+  + displayStatistics(): void
+}
+
+class Application {
+  + {static} main(args: String[]): void
+  - demonstrateSystem(): void
+}
+
+Customer "1" -- "*" Order
+Order "1" -- "*" OrderItem
+OrderItem "1" -- "1" MenuItem
+Restaurant "1" -- "*" MenuItem
+Restaurant "1" -- "*" Order
+
+@enduml
